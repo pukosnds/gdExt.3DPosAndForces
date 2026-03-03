@@ -1,7 +1,7 @@
 IF YOU WANT TO ADD YOUR VERSION TO IT
-please add your JSON and add the versioning based on the latest version from here
+please put your JSON file inside an folder with the version as name. 
 
-following this:
+the way i version it is following this logic:
 
 0.addition.patch
 
