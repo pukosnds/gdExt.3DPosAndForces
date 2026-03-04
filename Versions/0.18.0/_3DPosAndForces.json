@@ -1,0 +1,625 @@
+{
+  "author": "",
+  "category": "Movement",
+  "extensionNamespace": "",
+  "fullName": "3D Positioning and Forces",
+  "gdevelopVersion": "",
+  "helpPath": "",
+  "iconUrl": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0ibWRpLWN1YmUtc2VuZCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGQ9Ik0xNiw0TDksOC4wNFYxNS45NkwxNiwyMEwyMywxNS45NlY4LjA0TTE2LDYuMzFMMTkuOCw4LjVMMTYsMTAuNjlMMTIuMjEsOC41TTAsN1Y5SDdWN00xMSwxMC4xMUwxNSwxMi40MlYxNy4xMUwxMSwxNC44MU0yMSwxMC4xMVYxNC44MUwxNywxNy4xMVYxMi40Mk0yLDExVjEzSDdWMTFNNCwxNVYxN0g3VjE1IiAvPjwvc3ZnPg==",
+  "name": "_3DPosAndForces",
+  "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/2cbc7d01420084b3a820e1cbc6a894823de82a3c5fe02ac7b4a9615a226df169_cube-send.svg",
+  "shortDescription": "Adds basic Positioning, and Forces functions for 3D objects",
+  "version": "0.5.0",
+  "description": [
+    "contains",
+    "Physics and Linear Forces",
+    "put object (physics or normal) at front of another object or camera"
+  ],
+  "tags": [
+    "3d",
+    "parent",
+    "forces"
+  ],
+  "authorIds": [
+    "n4hGQoIPV1f6gSQY4f2aqsDB2gD3"
+  ],
+  "dependencies": [],
+  "globalVariables": [],
+  "sceneVariables": [],
+  "eventsFunctions": [
+    {
+      "fullName": "",
+      "functionType": "Action",
+      "name": "Impulse",
+      "sentence": "Apply an impulse with force _PARAM5_ at the object _PARAM1_ at the angle _PARAM3_ and elevation _PARAM4_ with physics",
+      "events": [
+        {
+          "disabled": true,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "Physics3D::Physics3DBehavior::ApplyImpulseAtCenter"
+              },
+              "parameters": [
+                "Object",
+                "Physics3D",
+                "force* cos(ToRad(Angle2D)) * cos(ToRad(Angle3D))",
+                "force* sin(ToRad(Angle2D)) * cos(ToRad(Angle3D))",
+                "force* sin(ToRad(-Angle3D))"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "Physics3D::Physics3DBehavior::ApplyImpulseAtCenter"
+              },
+              "parameters": [
+                "Object",
+                "Physics3D",
+                "force* cos(ToRad(Angle2D)) * cos(ToRad(Angle3D))",
+                "force* sin(ToRad(Angle2D)) * cos(ToRad(Angle3D))",
+                "force* sin(ToRad(-Angle3D))"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "",
+          "name": "Object",
+          "supplementaryInformation": "Scene3D::Cube3DObject",
+          "type": "objectList"
+        },
+        {
+          "description": "3D physics engine",
+          "name": "Physics3D",
+          "supplementaryInformation": "Physics3D::Physics3DBehavior",
+          "type": "behavior"
+        },
+        {
+          "description": "",
+          "name": "Angle2D",
+          "type": "expression"
+        },
+        {
+          "description": "",
+          "name": "Angle3D",
+          "type": "expression"
+        },
+        {
+          "description": "",
+          "name": "force",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "fullName": "Linear Force",
+      "functionType": "Action",
+      "name": "ForceLinear",
+      "sentence": "Apply an linear force _PARAM5_ at the object _PARAM1_ at the angle _PARAM3_ and elevation _PARAM4_",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetCenter"
+              },
+              "parameters": [
+                "Object",
+                "=",
+                "force* cos(ToRad(Angle2D)) * cos(ToRad(Angle3D))",
+                "=",
+                "force* sin(ToRad(Angle2D)) * cos(ToRad(Angle3D))"
+              ]
+            },
+            {
+              "type": {
+                "value": "Scene3D::Base3DBehavior::SetCenterZ"
+              },
+              "parameters": [
+                "Object",
+                "Object3D",
+                "=",
+                "force* sin(ToRad(-Angle3D))"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "",
+          "name": "Object",
+          "supplementaryInformation": "Scene3D::Cube3DObject",
+          "type": "objectList"
+        },
+        {
+          "description": "3D physics engine",
+          "name": "Physics3D",
+          "supplementaryInformation": "Physics3D::Physics3DBehavior",
+          "type": "behavior"
+        },
+        {
+          "description": "",
+          "name": "Angle2D",
+          "type": "expression"
+        },
+        {
+          "description": "",
+          "name": "Angle3D",
+          "type": "expression"
+        },
+        {
+          "description": "",
+          "name": "force",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "fullName": "",
+      "functionType": "Action",
+      "name": "Force",
+      "sentence": "Apply an force _PARAM5_ at the object _PARAM1_ at the angle _PARAM3_ and elevation _PARAM4_ witth physics",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "Physics3D::Physics3DBehavior::ApplyForceAtCenter"
+              },
+              "parameters": [
+                "Object",
+                "Physics3D",
+                "force* cos(ToRad(Angle2D)) * cos(ToRad(Angle3D))",
+                "force* sin(ToRad(Angle2D)) * cos(ToRad(Angle3D))",
+                "force* sin(ToRad(-Angle3D))"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "",
+          "name": "Object",
+          "supplementaryInformation": "Scene3D::Cube3DObject",
+          "type": "objectList"
+        },
+        {
+          "description": "3D physics engine",
+          "name": "Physics3D",
+          "supplementaryInformation": "Physics3D::Physics3DBehavior",
+          "type": "behavior"
+        },
+        {
+          "description": "",
+          "name": "Angle2D",
+          "type": "expression"
+        },
+        {
+          "description": "",
+          "name": "Angle3D",
+          "type": "expression"
+        },
+        {
+          "description": "",
+          "name": "force",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "fullName": "Positioning an object relative to the camera Pos and Angle",
+      "functionType": "Action",
+      "name": "positioningCamera",
+      "sentence": "Position object _PARAM1_ at the center of camera with distance _PARAM2_, with Xoffset _PARAM3_, Yoffset _PARAM4_, with lerp (float) _PARAM6_",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "lerp",
+                "=",
+                "-1"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetCenter"
+              },
+              "parameters": [
+                "Object",
+                "=",
+                "CameraCenterX()+ (Distance * cos(ToRad(CameraAngle() - 90)) * cos(ToRad(Scene3D::CameraRotationX() - 90))) \n+ (HorizontalOffset * cos(ToRad(CameraAngle()))) \n+ (VerticalOffset * cos(ToRad(CameraAngle() - 90)) * sin(ToRad(Scene3D::CameraRotationX() - 90)))",
+                "=",
+                "CameraCenterY() \n+ (Distance * sin(ToRad(CameraAngle() - 90)) * cos(ToRad(Scene3D::CameraRotationX() - 90))) \n+ (HorizontalOffset * sin(ToRad(CameraAngle()))) \n+ (VerticalOffset * sin(ToRad(CameraAngle() - 90)) * sin(ToRad(Scene3D::CameraRotationX() - 90)))"
+              ]
+            },
+            {
+              "type": {
+                "value": "Scene3D::Base3DBehavior::SetCenterZ"
+              },
+              "parameters": [
+                "Object",
+                "Object3D",
+                "=",
+                "Scene3D::CameraZ() \n+ (Distance * sin(ToRad(Scene3D::CameraRotationX() - 90))) \n+ (VerticalOffset * cos(ToRad(Scene3D::CameraRotationX() - 90)))"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "lerp",
+                "!=",
+                "-1"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetCenter"
+              },
+              "parameters": [
+                "Object",
+                "=",
+                "lerp(Object.CenterX(), CameraCenterX()+ Distance * cos(ToRad((CameraAngle()-90))) * cos(ToRad((Scene3D::CameraRotationX()-90))),lerp)",
+                "=",
+                "lerp(Object.CenterY(), CameraCenterY()+ Distance * sin(ToRad((CameraAngle()-90))) * cos(ToRad((Scene3D::CameraRotationX()-90))), lerp)"
+              ]
+            },
+            {
+              "type": {
+                "value": "Scene3D::Base3DBehavior::SetCenterZ"
+              },
+              "parameters": [
+                "Object",
+                "Object3D",
+                "=",
+                "lerp(Object.Object3D::CenterZ(), Scene3D::CameraZ() + (Distance * sin(ToRad(Scene3D::CameraRotationX()-90))), lerp)"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "Object",
+          "name": "Object",
+          "type": "objectList"
+        },
+        {
+          "description": "Distance between Camera and Object",
+          "name": "Distance",
+          "type": "expression"
+        },
+        {
+          "description": "2D pos in X Axis, 0 is center",
+          "name": "HorizontalOffset",
+          "type": "expression"
+        },
+        {
+          "description": "2D pos in Y Axis, 0 is center",
+          "name": "VerticalOffset",
+          "type": "expression"
+        },
+        {
+          "description": "3D capability",
+          "name": "Object3D",
+          "supplementaryInformation": "Scene3D::Base3DBehavior",
+          "type": "behavior"
+        },
+        {
+          "description": "to smooth",
+          "name": "lerp",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "fullName": "Positioning an object relative to the camera Pos and Angle(Physics)",
+      "functionType": "Action",
+      "name": "positioningCameraPhysics",
+      "sentence": "Position object _PARAM1_ at the center of camera with distance _PARAM2_, with Xoffset _PARAM3_, Yoffset _PARAM4_, with lerp (float) _PARAM6_ with Physics",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "Physics3D::Physics3DBehavior::SetLinearVelocityX"
+              },
+              "parameters": [
+                "Object",
+                "Physics3D",
+                "=",
+                "((CameraCenterX() + (Distance * cos(ToRad(CameraAngle() - 90)) * cos(ToRad(Scene3D::CameraRotationX() - 90))) + (HorizontalOffset * cos(ToRad(CameraAngle()))) + (VerticalOffset * cos(ToRad(CameraAngle() - 90)) * sin(ToRad(Scene3D::CameraRotationX() - 90)))) - Object.CenterX()) * lerp"
+              ]
+            },
+            {
+              "type": {
+                "value": "Physics3D::Physics3DBehavior::SetLinearVelocityY"
+              },
+              "parameters": [
+                "Object",
+                "Physics3D",
+                "=",
+                "((CameraCenterY() + (Distance * sin(ToRad(CameraAngle() - 90)) * cos(ToRad(Scene3D::CameraRotationX() - 90))) + (HorizontalOffset * sin(ToRad(CameraAngle()))) + (VerticalOffset * sin(ToRad(CameraAngle() - 90)) * sin(ToRad(Scene3D::CameraRotationX() - 90)))) - Object.CenterY()) * lerp"
+              ]
+            },
+            {
+              "type": {
+                "value": "Physics3D::Physics3DBehavior::SetLinearVelocityZ"
+              },
+              "parameters": [
+                "Object",
+                "Physics3D",
+                "=",
+                "((Scene3D::CameraZ() + (Distance * sin(ToRad(Scene3D::CameraRotationX() - 90))) + (VerticalOffset * cos(ToRad(Scene3D::CameraRotationX() - 90)))) - Object.Object3D::CenterZ()) * lerp"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "Object",
+          "name": "Object",
+          "type": "objectList"
+        },
+        {
+          "description": "Distance between Camera and Object",
+          "name": "Distance",
+          "type": "expression"
+        },
+        {
+          "description": "2D pos in X Axis, 0 is center",
+          "name": "HorizontalOffset",
+          "type": "expression"
+        },
+        {
+          "description": "2D pos in Y Axis, 0 is center",
+          "name": "VerticalOffset",
+          "type": "expression"
+        },
+        {
+          "description": "3D capability",
+          "name": "Object3D",
+          "supplementaryInformation": "Scene3D::Base3DBehavior",
+          "type": "behavior"
+        },
+        {
+          "description": "3D physics engine",
+          "name": "Physics3D",
+          "supplementaryInformation": "Physics3D::Physics3DBehavior",
+          "type": "behavior"
+        },
+        {
+          "description": "to smooth",
+          "name": "lerp",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "fullName": "Follow an Object (Physics)",
+      "functionType": "Action",
+      "name": "positioningPhysics",
+      "sentence": "Put object _PARAM3_ in front of _PARAM1_ at distance _PARAM4_, with Xoffset _PARAM5_, Yoffset _PARAM6_, zOffset _PARAM10_, lerp (float) _PARAM9_ with physics",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "Physics3D::Physics3DBehavior::SetLinearVelocityX"
+              },
+              "parameters": [
+                "Object",
+                "Physics3D",
+                "=",
+                "((Target.CenterX()+ (Distance * cos(ToRad(CameraAngle() - 90)) * cos(ToRad(Scene3D::CameraRotationX() - 90))) + (HorizontalOffset * cos(ToRad(CameraAngle()))) + (VerticalOffset * cos(ToRad(CameraAngle() - 90)) * sin(ToRad(Scene3D::CameraRotationX() - 90)))) - Object.CenterX()) * lerp"
+              ]
+            },
+            {
+              "type": {
+                "value": "Physics3D::Physics3DBehavior::SetLinearVelocityY"
+              },
+              "parameters": [
+                "Object",
+                "Physics3D",
+                "=",
+                "((Target.CenterY()+ (Distance * sin(ToRad(CameraAngle() - 90)) * cos(ToRad(Scene3D::CameraRotationX() - 90))) + (HorizontalOffset * sin(ToRad(CameraAngle()))) + (VerticalOffset * sin(ToRad(CameraAngle() - 90)) * sin(ToRad(Scene3D::CameraRotationX() - 90)))) - Object.CenterY()) * lerp"
+              ]
+            },
+            {
+              "type": {
+                "value": "Physics3D::Physics3DBehavior::SetLinearVelocityZ"
+              },
+              "parameters": [
+                "Object",
+                "Physics3D",
+                "=",
+                "((Target.Object3D2::CenterZ()+ (Distance * sin(ToRad(Scene3D::CameraRotationX() - 90))) + (VerticalOffset * cos(ToRad(Scene3D::CameraRotationX() - 90)))) - Object.Object3D::CenterZ())+zoffset* lerp"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "Object",
+          "name": "Target",
+          "type": "objectList"
+        },
+        {
+          "description": "3D capability",
+          "name": "Object3D2",
+          "supplementaryInformation": "Scene3D::Base3DBehavior",
+          "type": "behavior"
+        },
+        {
+          "description": "Object",
+          "name": "Object",
+          "type": "objectList"
+        },
+        {
+          "description": "Distance between Camera and Object",
+          "name": "Distance",
+          "type": "expression"
+        },
+        {
+          "description": "2D pos in X Axis, 0 is center",
+          "name": "HorizontalOffset",
+          "type": "expression"
+        },
+        {
+          "description": "2D pos in Y Axis, 0 is center",
+          "name": "VerticalOffset",
+          "type": "expression"
+        },
+        {
+          "description": "3D capability",
+          "name": "Object3D",
+          "supplementaryInformation": "Scene3D::Base3DBehavior",
+          "type": "behavior"
+        },
+        {
+          "description": "3D physics engine",
+          "name": "Physics3D",
+          "supplementaryInformation": "Physics3D::Physics3DBehavior",
+          "type": "behavior"
+        },
+        {
+          "description": "to smooth",
+          "name": "lerp",
+          "type": "expression"
+        },
+        {
+          "description": "",
+          "name": "zoffset",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "fullName": "Follow An object",
+      "functionType": "Action",
+      "name": "Positioning",
+      "sentence": "Put object _PARAM1_ in front of _PARAM4_ at distance _PARAM3_, with Xoffset _PARAM6_, Yoffset _PARAM7_, Zoffset _PARAM8_",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetCenter"
+              },
+              "parameters": [
+                "Object",
+                "=",
+                "Target.CenterX() + Distance * cos(Target.Angle()) * cos(Target.Object3D2::RotationY())+HorizontalOffset",
+                "=",
+                "Target.CenterY() + Distance * sin(Target.Angle()) * cos(Target.Object3D2::RotationY())+VerticalOffset"
+              ]
+            },
+            {
+              "type": {
+                "value": "Scene3D::Base3DBehavior::SetCenterZ"
+              },
+              "parameters": [
+                "Object",
+                "Object3D",
+                "=",
+                "Target.Object3D2::CenterZ()+Zoffset"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "Object",
+          "name": "Object",
+          "type": "objectList"
+        },
+        {
+          "description": "3D capability",
+          "name": "Object3D",
+          "supplementaryInformation": "Scene3D::Base3DBehavior",
+          "type": "behavior"
+        },
+        {
+          "description": "",
+          "name": "Distance",
+          "type": "expression"
+        },
+        {
+          "description": "",
+          "name": "Target",
+          "type": "objectList"
+        },
+        {
+          "description": "3D capability",
+          "name": "Object3D2",
+          "supplementaryInformation": "Scene3D::Base3DBehavior",
+          "type": "behavior"
+        },
+        {
+          "description": "",
+          "name": "HorizontalOffset",
+          "type": "expression"
+        },
+        {
+          "description": "",
+          "name": "VerticalOffset",
+          "type": "expression"
+        },
+        {
+          "description": "",
+          "name": "Zoffset",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    }
+  ],
+  "eventsBasedBehaviors": [],
+  "eventsBasedObjects": []
+}
