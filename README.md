@@ -23,5 +23,4 @@ if you changed the extension BEFORE the official release, DO NOT do an Pull Requ
 you can contribute by creating an fork of this repository, add your changes (adding your version in the version folder for example, or your example projects, dadadad) and then you can do an pull request!
 doing so, it will be reviewed, tested and if everything is good, merged.
 
-# Documentation
-check the [wiki](https://github.com/pukosnds/gdExt.3DPosAndForces/wiki)
+# [Documentation](https://github.com/pukosnds/gdExt.3DPosAndForces/wiki#documentation)
