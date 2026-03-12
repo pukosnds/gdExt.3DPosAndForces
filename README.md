@@ -24,4 +24,4 @@ you can contribute by creating an fork of this repository, add your changes (add
 doing so, it will be reviewed, tested and if everything is good, merged.
 
 # Documentation
-soon
+check the [wiki](https://github.com/pukosnds/gdExt.3DPosAndForces/wiki)
