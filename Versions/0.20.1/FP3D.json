@@ -2817,7 +2817,7 @@
                 "Object",
                 "Physics3D",
                 "=",
-                "((CameraCenterX(Layer) + (-Distance * cos(ToRad(CameraAngle(Layer) - 90)) * cos(ToRad(Scene3D::CameraRotationX(Layer) - 90))) + (HorizontalOffset * cos(ToRad(CameraAngle(Layer)))) + (VerticalOffset * cos(ToRad(CameraAngle(Layer) - 90)) * sin(ToRad(Scene3D::CameraRotationX(Layer) - 90)))) - Object.CenterX()) * Force"
+                "((CameraCenterX(Layer) + (Distance * cos(ToRad(CameraAngle(Layer) - 90)) * cos(ToRad(Scene3D::CameraRotationX(Layer) - 90))) + (HorizontalOffset * cos(ToRad(CameraAngle(Layer)))) + (VerticalOffset * cos(ToRad(CameraAngle(Layer) - 90)) * sin(ToRad(Scene3D::CameraRotationX(Layer) - 90)))) - Object.CenterX()) * Force"
               ]
             },
             {
@@ -2828,7 +2828,7 @@
                 "Object",
                 "Physics3D",
                 "=",
-                "((CameraCenterY(Layer) + (-Distance * sin(ToRad(CameraAngle(Layer) - 90)) * cos(ToRad(Scene3D::CameraRotationX(Layer) - 90))) + (HorizontalOffset * sin(ToRad(CameraAngle(Layer)))) + (VerticalOffset * sin(ToRad(CameraAngle(Layer) - 90)) * sin(ToRad(Scene3D::CameraRotationX(Layer) - 90)))) - Object.CenterY()) * Force"
+                "((CameraCenterY(Layer) + (Distance * sin(ToRad(CameraAngle(Layer) - 90)) * cos(ToRad(Scene3D::CameraRotationX(Layer) - 90))) + (HorizontalOffset * sin(ToRad(CameraAngle(Layer)))) + (VerticalOffset * sin(ToRad(CameraAngle(Layer) - 90)) * sin(ToRad(Scene3D::CameraRotationX(Layer) - 90)))) - Object.CenterY()) * Force"
               ]
             },
             {
@@ -2839,7 +2839,7 @@
                 "Object",
                 "Physics3D",
                 "=",
-                "((Scene3D::CameraZ(Layer) + (-Distance * sin(ToRad(Scene3D::CameraRotationX(Layer) - 90))) + (VerticalOffset * cos(ToRad(Scene3D::CameraRotationX(Layer) - 90)))) - Object.Object3D::CenterZ()) * Force"
+                "((Scene3D::CameraZ(Layer) + (Distance * sin(ToRad(Scene3D::CameraRotationX(Layer) - 90))) + (VerticalOffset * cos(ToRad(Scene3D::CameraRotationX(Layer) - 90)))) - Object.Object3D::CenterZ()) * Force"
               ]
             }
           ]
@@ -6249,6 +6249,7 @@
               ]
             },
             {
+              "folded": true,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [
                 {
@@ -6391,6 +6392,7 @@
               ]
             },
             {
+              "folded": true,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [
                 {
@@ -6469,6 +6471,7 @@
               ]
             },
             {
+              "folded": true,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [
                 {
@@ -6545,6 +6548,22 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "StringVariable"
+                  },
+                  "parameters": [
+                    "Return",
+                    "=",
+                    "\"Angle\""
+                  ]
+                }
+              ],
+              "actions": []
             }
           ],
           "variables": [
@@ -6658,7 +6677,7 @@
         {
           "description": "Choose \"X\", \"Y\", \"Size\" and \"-Size\".",
           "name": "Return",
-          "supplementaryInformation": "[\"X\",\"Y\",\"Size\",\"-Size\"]",
+          "supplementaryInformation": "[\"X\",\"Y\",\"Size\",\"-Size\",\"Angle\"]",
           "type": "stringWithSelector"
         },
         {
