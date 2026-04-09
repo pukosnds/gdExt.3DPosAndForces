@@ -10,7 +10,7 @@
   "name": "FP3D",
   "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/e2314b6adb780c72b1332a13d17abb17458ebb9c8fbecbbdd6cc2d4127178df2_axis-arrow.svg",
   "shortDescription": "Adds functions for 3D enviroenment such as Forces, Constraints and more.",
-  "version": "0.20.3",
+  "version": "0.21.0",
   "description": [
     "CONTAINS BASIC AND COMPLEX FUNCTIONS.",
     "Functions such as:",
